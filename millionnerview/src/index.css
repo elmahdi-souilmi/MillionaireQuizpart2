@@ -1,0 +1,9 @@
+.loginform{
+  width: fit-content;
+  margin: auto;
+  border: 3px solid blue;
+  padding: 10px;
+}
+.col{
+  margin-top : 5%;
+}
