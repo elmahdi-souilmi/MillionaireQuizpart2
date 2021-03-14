@@ -1,36 +1,41 @@
 import { useState } from 'react';
-import InputGroup from 'react-bootstrap/InputGroup'
+import { useHistory } from 'react-router-dom';
 import Card from 'react-bootstrap/Card'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Button from 'react-bootstrap/Button';
 import axios from 'axios';
+
 function Userlanding() {
     let userid  = {"participantId" : localStorage.getItem("iduser")};
     const [codegroup ,setCodegroup] = useState(null);
     console.log(codegroup);
-    const creategroup = () => {
-    axios.post('http://localhost:2020/participant/creategroup',userid,{
+    const history = useHistory();
+    const creategroup = async () => {
+      
+   await  axios.post('http://localhost:2020/participant/creategroup',userid,{
                 headers: {
                 'Authorization': `barer ${localStorage.getItem("token")}` 
                     }})
     .then(res => {
     localStorage.setItem("codeGroup", res.data.codegroup);
     })
+    history.push("/waitingpage");
     }
-    const joingroup = () => {
+    const joingroup = async () => {
         const participantId = localStorage.getItem("iduser")
           let group = {codegroup,participantId }
           console.log(group);
-          axios.put('http://localhost:2020/participant/joingroup',group,{
+      await axios.put('http://localhost:2020/participant/joingroup', group, {
                 headers: {
                 'Authorization': `barer ${localStorage.getItem("token")}` 
-                    }})
-    .then(res => {
+                    }}).then(res => {
         console.log(res.data);
-   // localStorage.setItem("codeGroup", res.data.codegroup);
+        localStorage.setItem("codeGroup", codegroup);
+        history.push("/waitingpage");
     })
+    
     }
 
     return (

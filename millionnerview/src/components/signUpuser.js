@@ -34,7 +34,7 @@ const Signupuser = () => {
       localStorage.setItem("nameuser", nameParticipant);
       setProblem(e.target.problem = "")
 
-      history.push("/home");
+      history.push("/userlanding");
     })
     .catch( error =>{
       setProblem(e.target.problem ="user not found")

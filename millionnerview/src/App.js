@@ -10,6 +10,9 @@ import Container from 'react-bootstrap/Container'
 import Accountstable from './components/activationtable'
 import Signupuser from './components/signUpuser'
 import Userlanding from './components/userlanding';
+import Waitinpage from './components/waitinpage'
+import Winner from './components/winner'
+import Game from './components/game'
 import {
   BrowserRouter as Router,
   Switch,
@@ -56,6 +59,15 @@ function App() {
           </Route>
           <Route exact path="/userlanding">
             <Userlanding/>
+          </Route>
+          <Route exact path="/waitingpage">
+            <Waitinpage/>
+          </Route>
+          <Route exact path="/game">
+            <Game/>
+          </Route>
+            <Route exact path="/poduim">
+            <Winner/>
           </Route>
         </Switch>
    </Router>
